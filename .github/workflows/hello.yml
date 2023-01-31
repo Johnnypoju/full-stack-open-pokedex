@@ -7,16 +7,8 @@ on:
 
 jobs:
   hello_world_job:
-<<<<<<< HEAD
     runs-on: Ubuntu 22.04
     steps:
       - name: Say hello
         run: |
           echo "Hello World!"
-=======
-    runs-on: POP!_OS 22.04 LTS
-    steps:
-      - name: Say hello
-        run: |
-          echo "Hello World!"
->>>>>>> 78874314ead4d25a8473d2d16682092e2c8bb99e
