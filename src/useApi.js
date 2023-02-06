@@ -7,11 +7,12 @@ const useApi = (url, mapResults = (result) => result) => {
   const [error, setError] = useState()
   useEffect(() => {
     setIsLoading(true)
-    axios
+    const test = axios
       .get(url)
       .then(response => setData(mapResults(response.data)))
       .catch(setError)
       .finally(() => setIsLoading(false))
+    console.log(test)
   }, [url])
 
   return { data, isLoading, error }

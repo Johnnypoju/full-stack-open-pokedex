@@ -75,7 +75,7 @@ const history = createMemoryHistory()
 
 describe('<PokemonPage />', () => {
   beforeEach(() => {
-    history.push('/pokemon/eevee')
+    history.push('/pokemon/raichu')
   })
 
   it('should render abilities', async () => {
