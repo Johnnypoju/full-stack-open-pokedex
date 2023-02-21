@@ -73,7 +73,6 @@ const pokemonList = {
 
 const history = createMemoryHistory()
 
-
 describe('<PokemonPage />', () => {
   beforeEach(() => {
     history.push('/pokemon/eevee')
@@ -85,10 +84,11 @@ describe('<PokemonPage />', () => {
     await act(async () => {
       render(
         <Router history={history}>
-          <PokemonPage pokemonList={pokemonList}/>
+          <PokemonPage />
         </Router>
       )
     })
+
 
     expect(screen.getByText('adaptability')).toBeVisible()
     expect(screen.getByText('anticipation')).toBeVisible()
@@ -100,7 +100,7 @@ describe('<PokemonPage />', () => {
     await act(async () => {
       render(
         <Router history={history}>
-          <PokemonPage pokemonList={pokemonList}/>
+          <PokemonPage />
         </Router>
       )
     })
@@ -114,7 +114,7 @@ describe('<PokemonPage />', () => {
     await act(async () => {
       render(
         <Router history={history}>
-          <PokemonPage pokemonList={pokemonList} previous={previous} next={next} />
+          <PokemonPage previous={previous} next={next} />
         </Router>
       )
     })
@@ -129,7 +129,7 @@ describe('<PokemonPage />', () => {
     await act(async () => {
       render(
         <Router history={history}>
-          <PokemonPage pokemonList={pokemonList}/>
+          <PokemonPage />
         </Router>
       )
     })
