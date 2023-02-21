@@ -85,7 +85,7 @@ describe('<PokemonPage />', () => {
     await act(async () => {
       render(
         <Router history={history}>
-          <PokemonPage />
+          <PokemonPage pokemonList={pokemonList}/>
         </Router>
       )
     })
@@ -100,7 +100,7 @@ describe('<PokemonPage />', () => {
     await act(async () => {
       render(
         <Router history={history}>
-          <PokemonPage />
+          <PokemonPage pokemonList={pokemonList}/>
         </Router>
       )
     })
@@ -114,7 +114,7 @@ describe('<PokemonPage />', () => {
     await act(async () => {
       render(
         <Router history={history}>
-          <PokemonPage previous={previous} next={next} />
+          <PokemonPage pokemonList={pokemonList} previous={previous} next={next} />
         </Router>
       )
     })
@@ -129,7 +129,7 @@ describe('<PokemonPage />', () => {
     await act(async () => {
       render(
         <Router history={history}>
-          <PokemonPage />
+          <PokemonPage pokemonList={pokemonList}/>
         </Router>
       )
     })
