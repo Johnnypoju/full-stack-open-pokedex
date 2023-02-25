@@ -18,7 +18,6 @@ kill_timeout = 5
 
 [[services]]
   protocol = "tcp"
-  http_checks = []
   internal_port = 8080
   processes = ["app"]
 
@@ -40,3 +39,12 @@ kill_timeout = 5
     timeout = "2s"
     grace_period = "1s"
     restart_limit = 0
+
+  [[services.http_checks]]
+    interval = "10s"
+    timeout = "2s"
+    method = "get"
+    path = "/health"
+    protocol = "http"
+    restart_limit = 0
+    [services.http_checks.headers]
