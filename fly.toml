@@ -43,6 +43,13 @@ kill_timeout = 5
     handlers = ["tls", "http"]
     port = 443
 
+  [[services.script_checks]]
+    command = "/app/health_check.sh"
+    grace_period = "3s"
+    interval = "5s"
+    restart_limit = 0
+    timeout = "3s"
+
   [[services.tcp_checks]]
     grace_period = "1s"
     interval = "15s"
