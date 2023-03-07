@@ -1,11 +1,11 @@
 #!/bin/bash
 
-result="$(curl -s 'https://localhost:5000/health')";
+result="$(curl -s 'https://jonde-pokedex.fly.dev/health')";
 
 if [[ $result == "ok" ]]; then
     echo "ok"
-    exit 0
+    exit 1
 else
     echo "not ok"
-    exit 1
+    exit 0
 fi
