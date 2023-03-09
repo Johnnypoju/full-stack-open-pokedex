@@ -38,6 +38,7 @@ jobs:
         run: flyctl deploy --remote-only
 
   tag_release:
+    if: ${{ github.event_name == 'pull'}}
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
     steps:
@@ -45,4 +46,4 @@ jobs:
         uses: anothrNick/github-tag-action@1.36.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BRANCH: minor
+          DEFAULT_BUMP: patch
