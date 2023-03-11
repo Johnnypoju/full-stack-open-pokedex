@@ -12,10 +12,8 @@ env:
 
 jobs:
   simple_deployment_pipeline:
-    
     runs-on: ubuntu-20.04
     steps:
-      if: github.event_name == 'push'
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -36,6 +34,7 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5000
       - name: Deploy app
+        if: github.event_name == 'push'
         run: flyctl deploy --remote-only
 
   tag_release:
