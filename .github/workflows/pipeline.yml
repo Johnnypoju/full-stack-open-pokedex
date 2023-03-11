@@ -3,7 +3,7 @@ name: Deployment pipeline
 on:
   push:
     branches:
-      - dev
+      - master
   pull_request:
     branches: [master]
     types: [opened, synchronize]
@@ -38,7 +38,6 @@ jobs:
         run: flyctl deploy --remote-only
 
   tag_release:
-    if: github.event_name == 'pull_request'
     runs-on: ubuntu-20.04
     steps:
       - name: Bumb version and push tag
