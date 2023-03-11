@@ -38,7 +38,6 @@ jobs:
         run: flyctl deploy --remote-only
 
   tag_release:
-    if: github.event_name == 'pull'
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
     steps:
@@ -47,3 +46,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
+          DRY_RUN: true
