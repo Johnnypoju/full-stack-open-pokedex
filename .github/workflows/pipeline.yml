@@ -43,7 +43,7 @@ jobs:
           wait-on: http://localhost:5000
       - name: Deploy app
         if: github.event_name == 'push' || ${{ !contains(toJson(github.event.commits.*.message), '#skip') }}
-        run: flyctl deploy --remote-only
+        run: flyctl deploy
       - name: deploy succeeded
         uses: rjstone/discord-webhook-notify@v1.0.4
         if: success()
