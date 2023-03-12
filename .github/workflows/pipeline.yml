@@ -45,18 +45,17 @@ jobs:
         if: github.event_name == 'push' || ${{ !contains(toJson(github.event.commits.*.message), '#skip') }}
         run: flyctl deploy --remote-only
       - name: Get Deployment URL
+        uses: wbeuil/wait-for-deployment@v1.0.0
         id: deployment
-        uses: dorshinar/get-deployment-url@v1.0.7
-        timeout-minutes: 1
         with:
-          token: ${{ secrets.GITHUB_TOKEN}}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: deploy succeeded
         uses: rjstone/discord-webhook-notify@v1.0.4
         if: success()
         with:
           severity: info
           details: Deployment succeeded with a new version
-          description: to ${{ steps.deployment.outputs.deployment }}
+          description: to ${{ steps.deployment.outputs.url }}
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_release:
