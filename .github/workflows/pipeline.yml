@@ -25,6 +25,14 @@ jobs:
         run: npm run eslint
       - name: build
         run: npm run build
+      - name: run has failed
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: failure()
+        with:
+          severity: error
+          description: Build failed!
+          details: ${{ github.event.commits.*.url}}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: test
         run: npm test
       - name: e2e tests
@@ -36,6 +44,20 @@ jobs:
       - name: Deploy app
         if: github.event_name == 'push' || ${{ !contains(toJson(github.event.commits.*.message), '#skip') }}
         run: flyctl deploy --remote-only
+      - name: Get Deployment URL
+        id: deployment
+        uses: dorshinar/get-deployment-url@v1.0.7
+        timeout--minutes: 1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN}}
+      - name: deploy succeeded
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: success()
+        with:
+          severity: info
+          details: Deployment succeeded with a new version
+          description: to ${{ steps.deployment.outputs.deployment }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_release:
     needs: [simple_deployment_pipeline]
