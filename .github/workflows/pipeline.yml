@@ -49,8 +49,8 @@ jobs:
         if: success()
         with:
           severity: info
-          details: Deployment succeeded with a new version
-          description: to https://jonde-pokedex.fly.dev by ${{github.event.commits.commiter.name }}
+          details: ${{github.event.commits.commiter.name }}
+          description: to https://jonde-pokedex.fly.dev by 
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_release:
