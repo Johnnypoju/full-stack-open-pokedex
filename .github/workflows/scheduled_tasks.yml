@@ -1,0 +1,14 @@
+on:
+  schedule:
+    - cron: '5 * * * *'
+
+jobs:
+  http_test_schedule:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check HTTP connection
+        uses: jtalk/url-health-check-action@v3
+        with:
+          url: https://jonde-pokedex.fly.dev
+          max-attempts: 1
+          retry-delay: 10s
